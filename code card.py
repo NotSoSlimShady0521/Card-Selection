@@ -1,4 +1,5 @@
 import streamlit as st
+streamlit run poker_card_selector.py
 
 # Function to display selected cards
 def display_selected_cards(selected_cards):
