@@ -7,21 +7,29 @@ def display_selected_cards(selected_cards):
     else:
         st.write("No cards selected.")
 
-# List of poker cards (simplified to just ranks and suits)
+# List of poker cards (ranks and suits)
 ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
-# Generate all possible cards
+# Generate the deck of poker cards
 deck_of_cards = [f"{rank} of {suit}" for rank in ranks for suit in suits]
 
-# Create checkboxes for each card
-selected_cards = []
-st.title("Select and Deselect Poker Cards")
+# Create a sidebar for the card selection process
+st.sidebar.title("Poker Card Selector")
+st.sidebar.write("Select or deselect your poker cards below:")
 
+# Create checkboxes for each card in the sidebar
+selected_cards = []
 for card in deck_of_cards:
-    selected = st.checkbox(card)
-    if selected:
+    if st.sidebar.checkbox(card):
         selected_cards.append(card)
 
-# Display the selected cards
+# Main section displaying selected cards
+st.title("Poker Card Selection App")
+st.write("Use the checkboxes in the sidebar to select or deselect cards.")
 display_selected_cards(selected_cards)
+
+# Option to clear all selections
+if st.button("Clear Selections"):
+    st.caching.clear_cache()
+    st.experimental_rerun()
